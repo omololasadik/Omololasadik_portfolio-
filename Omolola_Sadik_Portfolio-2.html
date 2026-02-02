@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Omolola Sadik — Copywriter & Content Strategist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════
+   RESET & ROOT
+   ═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #111111;
+  --ink-60: #4d4d4d;
+  --ink-40: #7a7a7a;
+  --ink-20: #b0b0b0;
+  --cream: #f6f4ef;
+  --cream-dark: #eae7df;
+  --warm-white: #faf9f6;
+  --accent: #d4522a;
+  --accent-pale: #faf0ec;
+  --accent-mid: rgba(212,82,42,0.12);
+  --tag-health: #1a6b4a;
+  --tag-health-bg: #e8f5ee;
+  --tag-copy: #d4522a;
+  --tag-copy-bg: #faf0ec;
+  --tag-fashion: #6b3fa0;
+  --tag-fashion-bg: #f2edf7;
+  --tag-travel: #2a6ba0;
+  --tag-travel-bg: #ecf2fa;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Outfit', system-ui, sans-serif;
+  --radius: 14px;
+  --transition: 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL
+   ═══════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ═══════════════════════════════════════════════
+   NAV
+   ═══════════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 48px;
+  background: rgba(246,244,239,0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transition: padding var(--transition), box-shadow var(--transition);
+}
+nav.scrolled { padding: 14px 48px; box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.3px;
+}
+.nav-links { display: flex; gap: 36px; align-items: center; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-60);
+  text-decoration: none;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  position: relative;
+  transition: color var(--transition);
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px;
+  background: var(--accent);
+  transition: width var(--transition);
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { width: 100%; }
+
+/* Mobile nav toggle */
+.nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.nav-toggle span { width: 24px; height: 1.5px; background: var(--ink); transition: var(--transition); }
+
+/* ═══════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 140px 48px 90px;
+  position: relative;
+  overflow: hidden;
+}
+/* Decorative gradient blob */
+.hero::before {
+  content: '';
+  position: absolute; top: -10%; right: -5%;
+  width: 55%; height: 70%;
+  background: radial-gradient(ellipse at 60% 40%, rgba(212,82,42,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+/* Subtle grid texture */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 820px; }
+
+.hero-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(52px, 8vw, 96px);
+  font-weight: 700;
+  line-height: 1.02;
+  color: var(--ink);
+  letter-spacing: -2.5px;
+  opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+}
+.hero h1 em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+.hero-sub {
+  margin-top: 36px;
+  font-size: 18px; font-weight: 300;
+  color: var(--ink-60);
+  max-width: 540px;
+  line-height: 1.75;
+  opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+}
+
+.hero-cta {
+  margin-top: 52px;
+  display: inline-flex; align-items: center; gap: 14px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 14px; font-weight: 500;
+  padding: 18px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  opacity: 0; animation: fadeUp 0.7s 0.65s forwards;
+}
+.hero-cta:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(212,82,42,0.3);
+}
+.hero-cta .arrow { transition: transform var(--transition); }
+.hero-cta:hover .arrow { transform: translateX(4px); }
+
+/* ═══════════════════════════════════════════════
+   STATS STRIP
+   ═══════════════════════════════════════════════ */
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(0,0,0,0.08);
+  margin: 0 48px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.stat-card {
+  background: var(--warm-white);
+  padding: 44px 36px;
+  transition: background var(--transition);
+}
+.stat-card:hover { background: var(--accent-pale); }
+.stat-number {
+  font-family: var(--serif);
+  font-size: 44px; font-weight: 700;
+  color: var(--ink); line-height: 1;
+  letter-spacing: -1px;
+}
+.stat-label {
+  font-size: 13px; font-weight: 400;
+  color: var(--ink-40);
+  margin-top: 10px; line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════
+   SECTION HEADERS
+   ═══════════════════════════════════════════════ */
+.section-header {
+  padding: 100px 48px 0;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 48px;
+}
+.section-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(38px, 5.5vw, 56px);
+  font-weight: 600; color: var(--ink);
+  letter-spacing: -1.2px; line-height: 1.1;
+}
+.section-header .section-tag {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ink-40);
+}
+
+/* ═══════════════════════════════════════════════
+   WORK — CATEGORY TABS
+   ═══════════════════════════════════════════════ */
+.work-section { padding: 0 48px 100px; }
+
+.tab-bar {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.tab-btn {
+  background: var(--cream-dark);
+  border: none;
+  font-family: var(--sans);
+  font-size: 13px; font-weight: 500;
+  color: var(--ink-60);
+  padding: 10px 22px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+  letter-spacing: 0.2px;
+}
+.tab-btn:hover { background: var(--ink); color: #fff; }
+.tab-btn.active { background: var(--ink); color: #fff; box-shadow: 0 4px 14px rgba(0,0,0,0.18); }
+
+/* ═══════════════════════════════════════════════
+   WORK CATEGORY PANELS
+   ═══════════════════════════════════════════════ */
+.category-panel { display: none; }
+.category-panel.active { display: block; }
+
+.category-label {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 24px;
+}
+.category-label .cat-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.category-label span {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--ink-40);
+}
+/* dot colors */
+.dot-copy { background: var(--tag-copy); }
+.dot-health { background: var(--tag-health); }
+.dot-fashion { background: var(--tag-fashion); }
+.dot-travel { background: var(--tag-travel); }
+
+/* ═══════════════════════════════════════════════
+   WORK ITEM ROWS
+   ═══════════════════════════════════════════════ */
+.work-list { display: flex; flex-direction: column; }
+
+.work-item {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: background var(--transition);
+  position: relative;
+}
+.work-item:first-child { border-top: 1px solid rgba(0,0,0,0.07); }
+.work-item:hover {
+  background: var(--accent-pale);
+  margin: 0 -20px; padding-left: 20px; padding-right: 20px;
+  border-radius: 12px;
+}
+
+.work-num {
+  font-family: var(--serif);
+  font-size: 14px; color: var(--ink-20);
+  font-weight: 400; text-align: center;
+}
+.work-content { min-width: 0; }
+.work-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.work-tag {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 50px;
+}
+.tag-healthcare { color: var(--tag-health); background: var(--tag-health-bg); }
+.tag-copywriting { color: var(--tag-copy); background: var(--tag-copy-bg); }
+.tag-b2b { color: var(--tag-travel); background: var(--tag-travel-bg); }
+.tag-saas { color: var(--tag-fashion); background: var(--tag-fashion-bg); }
+.tag-fashion { color: var(--tag-fashion); background: var(--tag-fashion-bg); }
+.tag-wellness { color: var(--tag-health); background: var(--tag-health-bg); }
+.tag-edtech { color: var(--tag-travel); background: var(--tag-travel-bg); }
+.tag-email { color: var(--tag-copy); background: var(--tag-copy-bg); }
+.tag-blog { color: var(--tag-travel); background: var(--tag-travel-bg); }
+.tag-social { color: var(--tag-fashion); background: var(--tag-fashion-bg); }
+.tag-hr { color: var(--tag-travel); background: var(--tag-travel-bg); }
+.tag-thought { color: var(--tag-fashion); background: var(--tag-fashion-bg); }
+
+.work-title {
+  font-family: var(--serif);
+  font-size: 21px; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+.work-desc {
+  font-size: 13px; color: var(--ink-40);
+  margin-top: 5px; font-weight: 300;
+}
+.work-arrow {
+  font-size: 20px; color: var(--ink-20);
+  transition: transform var(--transition), color var(--transition);
+  flex-shrink: 0;
+}
+.work-item:hover .work-arrow { transform: translateX(5px) translateY(3px); color: var(--accent); }
+
+/* ═══════════════════════════════════════════════
+   EXPANDED SAMPLE PANEL
+   ═══════════════════════════════════════════════ */
+.sample-panel {
+  display: none;
+  background: #fff;
+  border-radius: 18px;
+  margin: 8px 0 16px;
+  padding: 48px 52px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+  border: 1px solid rgba(0,0,0,0.05);
+  animation: panelIn 0.35s cubic-bezier(.4,0,.2,1);
+}
+.sample-panel.open { display: block; }
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.panel-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 28px;
+}
+.panel-close {
+  background: var(--cream-dark); border: none;
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 18px; color: var(--ink-60);
+  transition: background var(--transition), color var(--transition);
+  flex-shrink: 0;
+}
+.panel-close:hover { background: var(--ink); color: #fff; }
+
+.panel-title {
+  font-family: var(--serif);
+  font-size: 28px; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.5px;
+  line-height: 1.25; margin-bottom: 6px;
+  padding-right: 40px;
+}
+.panel-meta {
+  font-size: 13px; color: var(--ink-40);
+  margin-bottom: 30px; font-weight: 300;
+}
+.panel-body {
+  font-size: 15px; line-height: 1.9;
+  color: var(--ink-60); font-weight: 300;
+  max-width: 720px;
+}
+.panel-body p { margin-bottom: 18px; }
+.panel-body p:last-child { margin-bottom: 0; }
+.panel-body strong { color: var(--ink); font-weight: 500; }
+.panel-body h4 {
+  font-family: var(--serif);
+  font-size: 19px; font-weight: 700;
+  color: var(--ink); margin: 24px 0 10px;
+  letter-spacing: -0.2px;
+}
+.panel-body ul { list-style: none; padding: 0; }
+.panel-body ul li {
+  padding: 6px 0; padding-left: 20px;
+  position: relative; font-size: 14px;
+}
+.panel-body ul li::before {
+  content: '—'; position: absolute; left: 0;
+  color: var(--accent); font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════════
+   ABOUT SECTION
+   ═══════════════════════════════════════════════ */
+.about-section {
+  padding: 100px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-left h2 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 50px);
+  font-weight: 600; color: var(--ink);
+  letter-spacing: -1px; line-height: 1.15;
+  position: sticky; top: 120px;
+}
+.about-left h2 em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+.about-right-col { display: flex; flex-direction: column; gap: 44px; }
+
+.about-bio p {
+  font-size: 16px; color: var(--ink-60);
+  line-height: 1.9; font-weight: 300;
+  margin-bottom: 16px;
+}
+.about-bio p:last-child { margin-bottom: 0; }
+.about-bio .highlight {
+  color: var(--ink); font-weight: 500;
+}
+
+/* Skills grid */
+.skills-block h3, .competencies-block h3 {
+  font-family: var(--serif);
+  font-size: 22px; font-weight: 700;
+  color: var(--ink); margin-bottom: 18px;
+  letter-spacing: -0.3px;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.skill-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 14px 18px;
+  background: var(--cream-dark);
+  border-radius: 10px;
+  transition: background var(--transition), transform var(--transition);
+}
+.skill-item:hover { background: var(--accent-pale); transform: translateX(3px); }
+.skill-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); margin-top: 7px; flex-shrink: 0;
+}
+.skill-item span {
+  font-size: 13px; font-weight: 500;
+  color: var(--ink-60); line-height: 1.4;
+}
+
+/* Competencies tags */
+.comp-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.comp-tag {
+  font-size: 13px; font-weight: 500;
+  color: var(--ink-60);
+  background: var(--cream-dark);
+  padding: 8px 18px;
+  border-radius: 50px;
+  transition: background var(--transition), color var(--transition);
+}
+.comp-tag:hover { background: var(--ink); color: #fff; }
+
+/* ═══════════════════════════════════════════════
+   CONTACT / CTA
+   ═══════════════════════════════════════════════ */
+.contact-section {
+  margin: 0 48px 80px;
+  background: var(--ink);
+  border-radius: 28px;
+  padding: 100px 48px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+/* Ambient glow */
+.contact-section::before {
+  content: '';
+  position: absolute; top: -60%; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(212,82,42,0.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+.contact-section::after {
+  content: '';
+  position: absolute; bottom: -40%; right: -10%;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(42,107,160,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.contact-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(38px, 6vw, 64px);
+  font-weight: 600; color: #fff;
+  letter-spacing: -1.5px; line-height: 1.1;
+  position: relative; z-index: 1;
+}
+.contact-section h2 em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+.contact-section p {
+  font-size: 16px; color: rgba(255,255,255,0.45);
+  margin-top: 20px; font-weight: 300;
+  max-width: 460px; margin-left: auto; margin-right: auto;
+  position: relative; z-index: 1; line-height: 1.7;
+}
+
+.contact-links {
+  display: flex; justify-content: center; gap: 12px;
+  margin-top: 44px; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.contact-links a {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: #fff; text-decoration: none;
+  font-size: 14px; font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 14px 28px; border-radius: 50px;
+  transition: background var(--transition), border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.contact-links a:hover {
+  background: var(--accent); border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(212,82,42,0.35);
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════ */
+footer {
+  text-align: center;
+  padding: 36px 48px 40px;
+}
+footer p {
+  font-size: 13px; color: var(--ink-20); font-weight: 300;
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — TABLET
+   ═══════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .about-section { grid-template-columns: 1fr; gap: 48px; }
+  .about-left h2 { position: static; }
+  .skills-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — MOBILE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 680px) {
+  nav { padding: 16px 24px; }
+  nav.scrolled { padding: 12px 24px; }
+  .nav-links { display: none; flex-direction: column; gap: 0; position: absolute; top: 100%; left: 0; right: 0; background: rgba(246,244,239,0.96); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); padding: 16px 0 24px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 24px; text-align: left; }
+  .nav-toggle { display: flex; }
+
+  .hero { min-height: auto; padding: 140px 24px 72px; }
+  .hero h1 { letter-spacing: -1.5px; }
+
+  .stats-strip { grid-template-columns: 1fr; margin: 0 24px; }
+  .stat-card { padding: 28px 24px; display: flex; gap: 24px; align-items: center; }
+  .stat-number { font-size: 34px; }
+
+  .section-header { padding: 72px 24px 0; margin-bottom: 32px; flex-direction: column; align-items: flex-start; gap: 8px; }
+
+  .work-section { padding: 0 24px 72px; }
+  .tab-bar { gap: 8px; }
+  .tab-btn { font-size: 12px; padding: 9px 18px; }
+
+  .work-item { grid-template-columns: 36px 1fr auto; gap: 14px; padding: 22px 0; }
+  .work-item:hover { margin: 0 -12px; padding-left: 12px; padding-right: 12px; }
+  .work-title { font-size: 18px; }
+
+  .sample-panel { padding: 28px 20px; margin: 6px 0 12px; }
+  .panel-title { font-size: 22px; }
+  .panel-body { font-size: 14px; }
+
+  .about-section { padding: 72px 24px; gap: 40px; }
+  .skills-grid { grid-template-columns: 1fr; }
+
+  .contact-section { margin: 0 24px 60px; padding: 60px 24px; border-radius: 20px; }
+  .contact-links { flex-direction: column; align-items: center; }
+  .contact-links a { width: 100%; max-width: 260px; justify-content: center; }
+
+  footer { padding: 28px 24px 36px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Omolola Sadik</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-label">Copywriter & Content Strategist</div>
+    <h1>OMOLOLA<br/>SADIK</h1>
+    <p class="hero-sub">I write content that earns its place on the page — across healthcare, SaaS, fashion, and education. From strategy to final sentence, every word is built to work.</p>
+    <a href="#work" class="hero-cta">
+      View My Work <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<div class="stats-strip reveal">
+  <div class="stat-card">
+    <div class="stat-number">2+</div>
+    <div class="stat-label">Years creating engaging content</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">4+</div>
+    <div class="stat-label">Sectors: SaaS, Tech, Health, Fashion & More</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-number">200+</div>
+    <div class="stat-label">Consultations</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     WORK
+     ═══════════════════════════════════════════════ -->
+<div id="work">
+  <div class="section-header reveal">
+    <h2>Selected Work</h2>
+    <span class="section-tag">Portfolio</span>
+  </div>
+
+  <div class="work-section">
+    <!-- TABS -->
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('copywriting')">Copywriting Samples</button>
+      <button class="tab-btn" onclick="switchTab('health')">Health Articles</button>
+      <button class="tab-btn" onclick="switchTab('fashion')">Fashion Content</button>
+      <button class="tab-btn" onclick="switchTab('travel')">Travel Content</button>
+    </div>
+
+    <!-- ═══ COPYWRITING SAMPLES ═══ -->
+    <div class="category-panel active" id="panel-copywriting">
+      <div class="category-label">
+        <span class="cat-dot dot-copy"></span>
+        <span>Copywriting Samples</span>
+      </div>
+      <div class="work-list">
+
+        <div class="work-item" onclick="togglePanel('copy-1', this)">
+          <span class="work-num">01</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-healthcare">Healthcare</span>
+              <span class="work-tag tag-copywriting">Patient Engagement</span>
+              <span class="work-tag tag-copywriting">DTC</span>
+            </div>
+            <div class="work-title">Type 2 Diabetes Patient Engagement Campaign</div>
+            <div class="work-desc">Empathetic, patient-facing copy for a healthcare brand designed to validate the diagnosis experience and guide toward action.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="copy-1">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;">
+                <span class="work-tag tag-healthcare">Healthcare</span>
+                <span class="work-tag tag-copywriting">Patient Engagement</span>
+                <span class="work-tag tag-copywriting">DTC</span>
+              </div>
+              <div class="panel-title">Type 2 Diabetes Patient Engagement Campaign</div>
+              <div class="panel-meta">Patient-facing copy · Healthcare brand · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('copy-1')">✕</button>
+          </div>
+          <div class="panel-body">
+            <h4>The Type 2 Diagnosis Struggle: You're Not Alone.</h4>
+            <p>You know the feeling all too well.<br/>You're sitting there after the appointment, staring at a new prescription and a list of lifestyle changes, and it all just feels... loud. It's like your normal life has been put on pause.</p>
+            <p>Trust us, we get it. That overwhelming sense of 'where do I even start?' can be paralyzing.</p>
+            <p>And it's not just about starting. It's the tension that wears you down. Every meal, every number feels like a test. "Can I eat this?" "Am I doing this right?"</p>
+            <p>It's exhausting, isn't it? You end up second-guessing so much that the goal of feeling better gets clouded by doubt and confusion.</p>
+            <h4>But wait… Wasn't Feeling Healthy Supposed To Be Empowering?</h4>
+            <p>What if you had a guide? Not just a pamphlet, but a real, step-by-step partner for the journey ahead?</p>
+            <h4>Let's Start the Conversation.</h4>
+            <p>Talk to your doctor about a management plan that feels less like a test, and more like a path forward. We're here to help you prepare for that talk.</p>
+            <p>Get your personalized questions for your doctor and a simple checklist to help build your plan. Your journey starts with one clear step.</p>
+          </div>
+        </div>
+
+        <div class="work-item" onclick="togglePanel('copy-2', this)">
+          <span class="work-num">02</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-b2b">B2B</span>
+              <span class="work-tag tag-saas">SaaS</span>
+              <span class="work-tag tag-email">Email</span>
+              <span class="work-tag tag-hr">HR</span>
+            </div>
+            <div class="work-title">Careersome HR Platform Launch</div>
+            <div class="work-desc">A sales email for a B2B SaaS platform targeting HR leaders and people operations teams.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="copy-2">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;">
+                <span class="work-tag tag-b2b">B2B</span>
+                <span class="work-tag tag-saas">SaaS</span>
+                <span class="work-tag tag-email">Email</span>
+                <span class="work-tag tag-hr">HR</span>
+              </div>
+              <div class="panel-title">Careersome HR Platform Launch</div>
+              <div class="panel-meta">Sales email · B2B SaaS · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('copy-2')">✕</button>
+          </div>
+          <div class="panel-body">
+            <h4>You Just Missed a Great Hire. Your Tools Didn't Tell You in Time.</h4>
+            <p>Last week, a candidate applied. She had everything you needed. The skills, experience, culture fit.</p>
+            <p>But she was stuck in your ATS. Your performance team didn't see her. Your compensation spreadsheet didn't know she existed.</p>
+            <p>By the time your hiring manager found her resume, she'd already accepted another offer. Sounds familiar? It happens every day.</p>
+            <p>You're not failing at hiring — your tools are failing you. You're managing a handful of platforms to handle your people. Recruiting here. Performance there. Compensation in spreadsheets. Approvals in Slack.</p>
+            <p>But your people data? It's nowhere because it is everywhere. It is not in one place. You're making decisions in the dark. Great candidates slip away and you're stuck maintaining systems instead of empowering talent.</p>
+            <h4>Meet Careersome: The intelligent platform that sees everything.</h4>
+            <p>Careersome is the single platform for the entire employee lifecycle — from hire to retire. We bring everything together, so you finally get the full picture.</p>
+            <ul>
+              <li><strong>AI-Powered Recruitment:</strong> Automatically rank candidates, cut hiring time, and never lose a top applicant again.</li>
+              <li><strong>Unified Performance:</strong> Run reviews, track goals, and manage growth in one place. No more scattered feedback.</li>
+              <li><strong>Real-Time Compensation:</strong> Plan salaries, track equity, and stay within budget with live dashboards.</li>
+              <li><strong>Seamless Onboarding & Offboarding:</strong> Automated workflows so every hire — and exit — is smooth and secure.</li>
+              <li><strong>One Live Dashboard:</strong> See hiring, performance, engagement, and retention in real time. Not next quarter.</li>
+            </ul>
+            <p>We don't just store data. We turn it into actionable insight. Predict turnover before it happens. Spot productivity shifts. See team capacity in real time.</p>
+            <p>Trusted by teams from 15 to 3,200 employees. SOC 2 compliant. Built for scaling businesses.</p>
+          </div>
+        </div>
+
+        <div class="work-item" onclick="togglePanel('copy-3', this)">
+          <span class="work-num">03</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-wellness">Wellness</span>
+              <span class="work-tag tag-blog">Blog</span>
+              <span class="work-tag tag-social">Social Media</span>
+            </div>
+            <div class="work-title">Student Mental Health & Social Media Article Teaser</div>
+            <div class="work-desc">Engaging introductory copy for a long-form article aimed at university students, discussing the dual impact of social media on mental health.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="copy-3">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;">
+                <span class="work-tag tag-wellness">Wellness</span>
+                <span class="work-tag tag-blog">Blog</span>
+                <span class="work-tag tag-social">Social Media</span>
+              </div>
+              <div class="panel-title">Student Mental Health & Social Media Article Teaser</div>
+              <div class="panel-meta">Article teaser · Wellness brand · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('copy-3')">✕</button>
+          </div>
+          <div class="panel-body">
+            <h4>Is Your Scroll Helping or Hurting? The Student's Guide to Social Media & Mental Health</h4>
+            <p>For university students, social media is your classroom, your social hub, and your newsfeed. It's how you find out a lecture is cancelled, share notes, and stay connected. But what is that constant connection costing your mental well-being?</p>
+            <p>The truth isn't black and white. Your relationship with social media is complex:</p>
+            <p><strong>The Good:</strong> It's a lifeline for connection and support. Class WhatsApp groups, anonymous confession spaces, and creative communities can reduce loneliness and build you up.</p>
+            <p><strong>The Bad:</strong> It's a breeding ground for comparison, cyberbullying, and addictive scrolling that steals sleep and builds anxiety. That "perfect" feed you're watching isn't real life, but it can feel dangerously real to your self-esteem.</p>
+            <h4>The Question Isn't "Is Social Media Bad?" — It's "How Can I Use It Well?"</h4>
+            <p>This isn't about deleting your WhatsApp, Facebook, TikTok, and Instagram apps. It's about building habits that protect your peace while staying connected.</p>
+            <p>The full article breaks down the latest research and offers strategies for students, including how to recognize and counter social comparison, practical steps for digital detox, and ways to turn your online spaces into genuine support systems.</p>
+          </div>
+        </div>
+
+        <div class="work-item" onclick="togglePanel('copy-4', this)">
+          <span class="work-num">04</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-wellness">Wellness</span>
+              <span class="work-tag tag-b2b">B2B</span>
+              <span class="work-tag tag-thought">Thought Leadership</span>
+              <span class="work-tag tag-hr">HR</span>
+            </div>
+            <div class="work-title">Corporate Mental Health Framework Article Teaser</div>
+            <div class="work-desc">Thought leadership intro for a wellness brand targeting business leaders and HR professionals to reframe workplace mental health as a systemic issue.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="copy-4">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;">
+                <span class="work-tag tag-wellness">Wellness</span>
+                <span class="work-tag tag-b2b">B2B</span>
+                <span class="work-tag tag-thought">Thought Leadership</span>
+                <span class="work-tag tag-hr">HR</span>
+              </div>
+              <div class="panel-title">Corporate Mental Health Framework Article Teaser</div>
+              <div class="panel-meta">Thought leadership · Wellness brand · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('copy-4')">✕</button>
+          </div>
+          <div class="panel-body">
+            <h4>Mental Health at Work: It's Not a "You" Problem, It's a "We" Problem.</h4>
+            <p>For far too long, the burden of workplace mental health has been placed on the individual. They say: "Practice more mindfulness." "Set better boundaries." "Just take a break."</p>
+            <p>But let's think again. What if the break you need isn't from work, but from a culture that equates burnout with dedication and silence with strength?</p>
+            <h4>The Old Playbook Is Broken.</h4>
+            <p>Wellness seminars and meditation apps are bandaids when what's needed is surgery. A positive culture isn't built on fruit baskets and free yoga; it's built on psychological safety, realistic workloads, and leaders who model vulnerability, not just vitality.</p>
+            <h4>A New Framework for a Healthier Bottom Line.</h4>
+            <p>The data is clear: psychological safety drives innovation, retention, and performance. The question is no longer "if" you should invest in mental health, but "how" to do it with depth and authenticity. It's about moving from policy to practice, from intention to impact.</p>
+            <p>The full article provides an actionable roadmap — including how to identify systemic dysfunction, the four pillars of a mentally resilient workplace culture, and concrete steps to replace performative wellness with genuine support.</p>
+          </div>
+        </div>
+
+        <div class="work-item" onclick="togglePanel('copy-5', this)">
+          <span class="work-num">05</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-edtech">EdTech</span>
+              <span class="work-tag tag-saas">SaaS</span>
+              <span class="work-tag tag-b2b">B2B2C</span>
+            </div>
+            <div class="work-title">Adaptive Learning Platform — Landing Page</div>
+            <div class="work-desc">Complete multi-section landing page copy for an EdTech startup, detailing value proposition, features, benefits, and social proof.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="copy-5">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;">
+                <span class="work-tag tag-edtech">EdTech</span>
+                <span class="work-tag tag-saas">SaaS</span>
+                <span class="work-tag tag-b2b">B2B2C</span>
+              </div>
+              <div class="panel-title">Adaptive Learning Platform — Landing Page</div>
+              <div class="panel-meta">Landing page copy · EdTech startup · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('copy-5')">✕</button>
+          </div>
+          <div class="panel-body">
+            <h4>Teaching just got smarter. Learning just got real.</h4>
+            <p>Every educator knows the feeling: you're teaching to the lesson plan, but the blank stares tell a different story. The lesson plan is on track. The students are not. In every classroom, a single pace creates two problems: some are left behind, while others are held back.</p>
+            <h4>How It Works</h4>
+            <ul>
+              <li><strong>Assess:</strong> Short, integrated check-ins gauge understanding as you teach.</li>
+              <li><strong>Adapt:</strong> The platform instantly adjusts content pathways for each student — reinforcement where needed, challenge where ready.</li>
+              <li><strong>Empower:</strong> You get a clear dashboard showing knowledge gaps and triumphs, freeing you to teach with precision.</li>
+            </ul>
+            <h4>How Do You Benefit as an Educator?</h4>
+            <ul>
+              <li><strong>Reclaim Your Time:</strong> Automate differentiation and reduce weekend planning. Focus on teaching, not troubleshooting.</li>
+              <li><strong>Teach with Confidence:</strong> Real-time insights let you intervene proactively, not retroactively.</li>
+              <li><strong>See Every Student:</strong> Move beyond grades to understand the why behind each learner's journey.</li>
+            </ul>
+            <p style="font-style:italic;color:var(--ink-40);border-left:3px solid var(--accent);padding-left:18px;margin:24px 0;">"With the platform, I'm no longer guessing who's keeping up. I know and I can act in the moment. It's like having a teaching assistant dedicated to every single student."</p>
+            <p>Join thousands of educators transforming their classrooms from rooms of students into communities of learners. Start your free classroom trial — no setup, no credit card required. Full access for 30 days, includes onboarding support.</p>
+          </div>
+        </div>
+
+      </div><!-- end work-list copywriting -->
+    </div><!-- end panel-copywriting -->
+
+    <!-- ═══ HEALTH ARTICLES ═══ -->
+    <div class="category-panel" id="panel-health">
+      <div class="category-label">
+        <span class="cat-dot dot-health"></span>
+        <span>Health Articles</span>
+      </div>
+      <div class="work-list">
+
+        <div class="work-item" onclick="togglePanel('health-1', this)">
+          <span class="work-num">01</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-healthcare">Healthcare</span>
+              <span class="work-tag tag-blog">Education</span>
+              <span class="work-tag tag-wellness">Student Wellbeing</span>
+            </div>
+            <div class="work-title">Mandating Health Education in Tertiary Institutions</div>
+            <div class="work-desc">A necessity for student wellbeing — examining why Nigerian universities must go beyond checkbox courses.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="health-1">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;"><span class="work-tag tag-healthcare">Healthcare</span><span class="work-tag tag-blog">Education</span></div>
+              <div class="panel-title">Mandating Health Education in Tertiary Institutions: A Necessity for Student Wellbeing</div>
+              <div class="panel-meta">Health article · Editorial · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('health-1')">✕</button>
+          </div>
+          <div class="panel-body">
+            <p>Health education refers to the process of teaching students about different aspects of health — including physical, mental, and sexual health — as well as strategies for preventing diseases and living a healthier life. Students, largely unfamiliar with the university environment, face a number of challenges: academic stress, the transition into adulthood, and newfound freedom that can lead some to engage in risky acts. Health education equips students with the knowledge and skills to make informed health decisions throughout this critical period.</p>
+            <h4>Why Health Education?</h4>
+            <p>Physical health education — covering nutrition, fitness, and disease prevention — helps students develop habits with long-term benefits. Mental health education is equally important: according to the WHO, stress, depression, and anxiety are prevalent among university students, often worsened by academic pressure. Health education can provide students with the tools to manage stress and seek professional help when needed.</p>
+            <p>Sexual health education is another critical component. Nigeria has the world's second highest burden of HIV/AIDS, with 40% of new cases reported in people aged 15–24. Education on consent, contraception, and STI prevention can significantly reduce the incidence of unwanted pregnancies and transmission of infections.</p>
+            <h4>What Makes It So Difficult?</h4>
+            <p>Curriculum overload is a concern — students already balance heavy academic requirements. Cultural resistance around topics like sexual health and mental health adds another layer. But these challenges are not without solutions. Institutions should integrate interactive workshops, peer education programs, and practical applications into health curricula rather than relying solely on lecture-based courses.</p>
+            <p>In conclusion, mandating health education in tertiary institutions is not just an academic requirement — it is an investment in the well-being and future success of students.</p>
+          </div>
+        </div>
+
+        <div class="work-item" onclick="togglePanel('health-2', this)">
+          <span class="work-num">02</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-wellness">Wellness</span>
+              <span class="work-tag tag-blog">Nutrition</span>
+              <span class="work-tag tag-healthcare">Health & Lifestyle</span>
+            </div>
+            <div class="work-title">Does Organic Necessarily Mean Healthy?</div>
+            <div class="work-desc">Debunking the myth that organic automatically equals nutritious — a practical guide for students on a budget.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="health-2">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;"><span class="work-tag tag-wellness">Wellness</span><span class="work-tag tag-blog">Nutrition</span></div>
+              <div class="panel-title">Health and Lifestyle: Does Organic Necessarily Mean Healthy?</div>
+              <div class="panel-meta">Health & lifestyle article · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('health-2')">✕</button>
+          </div>
+          <div class="panel-body">
+            <p>When people hear the word "organic," they often think of natural, healthy, and wholesome food. But what does organic really mean? Organic foods are grown or produced without synthetic pesticides, artificial fertilisers, or genetic modification. You can think of organic farming as farming the way our grandparents did it — using natural methods to grow crops and raise animals.</p>
+            <h4>The Health Question</h4>
+            <p>Let's debunk the conception that organic is the same as natural. Organic refers to products grown without synthetic additives, whereas "natural" is a broader term implying minimal artificial ingredients. Research shows organic foods may have slightly higher levels of certain antioxidants and omega-3 fatty acids, and they often contain fewer pesticide residues.</p>
+            <p>But here's the catch: according to UC Davis Health, organic foods are not healthier per se in terms of nutrients. You get the same nutritional benefits in conventionally grown foods. Just because something is labelled "organic" does not mean it is low in calories, sugar, or fat. Think of organic sugary snacks or organic processed meat — these are still processed foods.</p>
+            <h4>Making Smart Choices as a Student</h4>
+            <p>Focus on whole foods first: fresh fruits, vegetables, and whole grains should be your priority. Read labels carefully — do not be deceived by marketing tricks. Consider local alternatives: many local farmers practice traditional methods that are essentially organic, even if not certified. The vegetables from your local market might be as good as imported organic options.</p>
+            <p>In conclusion, a product being branded "organic" does not automatically make it more nutritious. An adequate diet of whole foods matters more — organic or not.</p>
+          </div>
+        </div>
+
+        <div class="work-item" onclick="togglePanel('health-3', this)">
+          <span class="work-num">03</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-healthcare">Women's Health</span>
+              <span class="work-tag tag-wellness">Wellness</span>
+              <span class="work-tag tag-blog">Student Life</span>
+            </div>
+            <div class="work-title">Menstrual Health Matters: Managing Cramps on Campus</div>
+            <div class="work-desc">A comprehensive guide for female students on managing menstrual health, breaking stigma, and knowing when to seek care.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="health-3">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;"><span class="work-tag tag-healthcare">Women's Health</span><span class="work-tag tag-wellness">Wellness</span></div>
+              <div class="panel-title">Menstrual Health Matters: Managing Menstrual Health and Cramps on Campus</div>
+              <div class="panel-meta">Health article · Student wellness · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('health-3')">✕</button>
+          </div>
+          <div class="panel-body">
+            <p>Menstrual health is a natural part of life, yet it is often surrounded by silence and stigma — making it harder for students to manage the challenges that come with menstruation. These challenges affect studies, social life, and well-being. Menstrual cramps, also known as dysmenorrhea, are prevalent among female undergraduate students, affecting their daily routines.</p>
+            <h4>How Do You Manage Menstrual Cramps?</h4>
+            <p><strong>Lifestyle changes:</strong> Regular exercise releases endorphins that act as natural pain relievers. Eating a diet rich in fruits, vegetables, and whole grains provides nutrients that reduce inflammation. Stress management — through meditation, deep breathing, or walks — can also prevent symptoms from worsening.</p>
+            <p><strong>Pain management:</strong> Over-the-counter pain relievers like ibuprofen can reduce pain and inflammation. Heat therapy — using a hot water bottle wrapped in a towel — relaxes uterine muscles. Herbal teas like chamomile or ginger may also provide relief.</p>
+            <p><strong>Hygiene and self-care:</strong> Change sanitary products regularly, get enough rest, and give yourself time to recover. Taking a warm bath can help with relaxation and comfort.</p>
+            <h4>When to Visit the Clinic</h4>
+            <p>If you experience extremely severe pain, unusual heavy bleeding, irregular periods, or something just doesn't feel right — it's time to visit a health professional. These symptoms can be signs of other health conditions that need attention.</p>
+            <h4>Breaking the Stigma</h4>
+            <p>Menstruation is not something to be ashamed of or hidden. We can reduce stigma by talking about it more openly — with friends, family, or classmates. The more we talk about it, the more normal it becomes.</p>
+          </div>
+        </div>
+
+        <div class="work-item" onclick="togglePanel('health-4', this)">
+          <span class="work-num">04</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-wellness">Mental Health</span>
+              <span class="work-tag tag-healthcare">Ecotherapy</span>
+              <span class="work-tag tag-blog">Well-being</span>
+            </div>
+            <div class="work-title">Ecotherapy: How Connecting with Nature Impacts Well-Being</div>
+            <div class="work-desc">Exploring the science and practice of nature-based therapy and its profound effects on mental, physical, and spiritual health.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="health-4">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;"><span class="work-tag tag-wellness">Mental Health</span><span class="work-tag tag-healthcare">Ecotherapy</span></div>
+              <div class="panel-title">Ecotherapy: How Connecting with Nature Can Have Positive Impacts on Our Well-Being</div>
+              <div class="panel-meta">Health & wellness article · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('health-4')">✕</button>
+          </div>
+          <div class="panel-body">
+            <p>In this fast-paced, tech-focused world, it is essential to set aside time to appreciate nature. Connecting with nature allows us to experience an almost inexplicable calm — and living in a world so reliant on digital media, we tend to forget how profoundly this connection impacts our well-being.</p>
+            <h4>What is Ecotherapy?</h4>
+            <p>Ecotherapy — also called "nature therapy" or "green therapy" — describes the wide range of ways in which contact with the natural environment can promote health and well-being. It takes many forms, but all involve spending time in nature and connecting with it. Ecotherapists believe humans have an innate connection to the natural world that can be harnessed to promote healing.</p>
+            <h4>Why Connecting with Nature Matters</h4>
+            <p><strong>Reduces stress:</strong> Research suggests connecting with nature has positive effects on the human brain, promoting relaxation and better cognitive functioning. Even being exposed to an image of a natural landscape can lower stress levels.</p>
+            <p><strong>Improves learning:</strong> Studies show nature enhances education outcomes by improving academic performance, focus, and engagement. As students, immersing ourselves in nature elevates mood, reduces stress, and facilitates better assimilation and reasoning.</p>
+            <p><strong>Improves physical health:</strong> Being outdoors in nature makes people come alive both physically and mentally — from lowered stress levels to improvements in general physical health.</p>
+            <p><strong>Speeds up recovery:</strong> A Swedish university hospital study found that patients in rooms with nature paintings were less anxious and required smaller doses of pain medication than those without.</p>
+            <p>The relationship between humans and nature is one of mutual respect and symbiotic interdependence. Connecting with nature would not only facilitate individual and collective development but also foster a greater appreciation for the natural world.</p>
+          </div>
+        </div>
+
+      </div><!-- end work-list health -->
+    </div><!-- end panel-health -->
+
+    <!-- ═══ FASHION CONTENT ═══ -->
+    <div class="category-panel" id="panel-fashion">
+      <div class="category-label">
+        <span class="cat-dot dot-fashion"></span>
+        <span>Fashion Content</span>
+      </div>
+      <div class="work-list">
+
+        <div class="work-item" onclick="togglePanel('fashion-1', this)">
+          <span class="work-num">01</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-fashion">Fashion</span>
+              <span class="work-tag tag-social">Social Media</span>
+              <span class="work-tag tag-blog">Marketing</span>
+            </div>
+            <div class="work-title">Social Media Marketing in the Fashion Industry</div>
+            <div class="work-desc">A strategic guide for fashion designers on leveraging social media to reach target audiences and drive sales.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="fashion-1">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;"><span class="work-tag tag-fashion">Fashion</span><span class="work-tag tag-social">Social Media</span></div>
+              <div class="panel-title">Social Media Marketing in the Fashion Industry</div>
+              <div class="panel-meta">Fashion & marketing article · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('fashion-1')">✕</button>
+          </div>
+          <div class="panel-body">
+            <p>Today, everyone is a potential customer in the world of fashion. Due to the high rate of demand, designers need to stay ahead of trends and create new products as quickly as they can — but this leaves little time for marketing. That's why it is important for fashion designers to understand how marketers connect with their target audience on social media.</p>
+            <p>With over 2 billion users on platforms like Instagram, Facebook, and Twitter, social media provides tons of potential customers ready to see your products — without having to invest in an advertising campaign or hiring an agency.</p>
+            <h4>How To Successfully Market Your Products</h4>
+            <ul>
+              <li><strong>Define your goals:</strong> Understand your target audience first. Once you know who you're trying to reach, you can create a plan that connects with them.</li>
+              <li><strong>Create a social media strategy:</strong> A good strategy includes marketing goals, audience, budget, and what you want to achieve through each channel.</li>
+              <li><strong>Set a schedule:</strong> Consistent posting is critical for building an audience and showing followers you're an active business.</li>
+              <li><strong>Stay consistent:</strong> If you suddenly become inactive, many followers might stop engaging with your content.</li>
+            </ul>
+            <p>Social media marketing is effective because it is the easiest and quickest way to reach a large number of people in a short period. It helps generate potential leads, increase sales, and improve customer retention — making it an essential tool for any fashion designer looking to grow.</p>
+          </div>
+        </div>
+
+        <div class="work-item" onclick="togglePanel('fashion-2', this)">
+          <span class="work-num">02</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-fashion">Fashion</span>
+              <span class="work-tag tag-blog">Business</span>
+              <span class="work-tag tag-b2b">Monetization</span>
+            </div>
+            <div class="work-title">How To Make Money in the Fashion Industry</div>
+            <div class="work-desc">An in-depth guide on monetizing fashion skills offline — practical strategies for beginners entering the industry.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="fashion-2">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;"><span class="work-tag tag-fashion">Fashion</span><span class="work-tag tag-blog">Business</span></div>
+              <div class="panel-title">How To Make Money in the Fashion Industry (Monetize Your Fashion Skills Offline)</div>
+              <div class="panel-meta">Fashion & business article · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('fashion-2')">✕</button>
+          </div>
+          <div class="panel-body">
+            <p>Fashion is one of the most profitable businesses in the world — but it also has an extremely high threshold for entry. Today's fashion industry is more competitive than ever, with designers constantly releasing new collections to keep up with unending demand. To succeed, you need to think outside the box and find creative ways to monetize your skills.</p>
+            <h4>Ways to Monetize Your Fashion Skills Offline</h4>
+            <ul>
+              <li><strong>Sell Your Own Merchandise:</strong> Design and sell well-crafted products to the people around you. Build awareness through word of mouth and a strong social media presence.</li>
+              <li><strong>Start a Fashion Styling Materials Business:</strong> Target locations where people prefer to purchase goods physically. Even with basic fashion skills, you can build a business supplying designers with what they need.</li>
+              <li><strong>Run a T-Shirt Printing Business:</strong> Find a niche and stand out from the pack. Create designs based on trending events, motivational quotes, or start your own hashtag movement.</li>
+              <li><strong>Become a Sewing Specialist/Instructor:</strong> If you have expert-level skills, teach others. Launch your own fashion school or work under an established fashion academy.</li>
+            </ul>
+            <p>The key to success in fashion is not just talent — it's strategy. Finding creative ways to monetize your skills while building visibility is what separates those who make it from those who don't.</p>
+          </div>
+        </div>
+
+        <div class="work-item" onclick="togglePanel('fashion-3', this)">
+          <span class="work-num">03</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-fashion">Fashion</span>
+              <span class="work-tag tag-blog">Culture</span>
+              <span class="work-tag tag-thought">Analysis</span>
+            </div>
+            <div class="work-title">Fashion and its Importance: What Comes to Your Mind?</div>
+            <div class="work-desc">An in-depth analysis of fashion as art, cultural expression, and a driver of self-discovery and societal evolution.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="fashion-3">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;"><span class="work-tag tag-fashion">Fashion</span><span class="work-tag tag-blog">Culture</span></div>
+              <div class="panel-title">Fashion and its Importance: What Comes to Your Mind When We Talk About Fashion?</div>
+              <div class="panel-meta">Fashion & culture article · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('fashion-3')">✕</button>
+          </div>
+          <div class="panel-body">
+            <p>Fashion is an art that goes beyond time and trends. It is a reflection, a medium of expression, a creative outlet, a confidence booster, and a means of empowerment. Fashion is a non-verbal medium through which we communicate information about ourselves and our personalities.</p>
+            <h4>The Artistic Importance</h4>
+            <p>Fashion exists as a general standard of judgment and self-evaluation. We have all heard the aphorism "First impressions are lasting" — and the few seconds we spend processing a person's fashion taste go a long way toward deciding compatibility. Through fashion, we communicate information about ourselves without saying a word. It is a visual marker of a person's lifestyle.</p>
+            <h4>The Cultural Importance</h4>
+            <p>Culture has a high influence on fashion, and fashion reflects the culture of a group of people. Through fashion, we display our traditional upbringing and establish our cultural heritage — even in distant lands. Fashion is universal. It provides an avenue for fostering togetherness among people of different cultural backgrounds.</p>
+            <h4>The Historical Importance</h4>
+            <p>Fashion plays the role of storytelling. It is as old as mankind — and odd fashion trends throughout history tell us stories about the people and cultures that existed. Although fashion has evolved over time, the ideas of the past still influence today's trends. Fashion is a visual marker of societal modification and human evolution.</p>
+          </div>
+        </div>
+
+      </div><!-- end work-list fashion -->
+    </div><!-- end panel-fashion -->
+
+    <!-- ═══ TRAVEL CONTENT ═══ -->
+    <div class="category-panel" id="panel-travel">
+      <div class="category-label">
+        <span class="cat-dot dot-travel"></span>
+        <span>Travel Content</span>
+      </div>
+      <div class="work-list">
+
+        <div class="work-item" onclick="togglePanel('travel-1', this)">
+          <span class="work-num">01</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-hr">Human Resources</span>
+              <span class="work-tag tag-b2b">B2B</span>
+              <span class="work-tag tag-blog">Guide</span>
+            </div>
+            <div class="work-title">How to Write a Job Specification</div>
+            <div class="work-desc">A step-by-step guide for HR professionals and hiring managers on writing specifications that attract and retain top talent.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="travel-1">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;"><span class="work-tag tag-hr">Human Resources</span><span class="work-tag tag-b2b">B2B</span></div>
+              <div class="panel-title">How to Write a Job Specification (A Step-by-Step Guide)</div>
+              <div class="panel-meta">HR & business guide · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('travel-1')">✕</button>
+          </div>
+          <div class="panel-body">
+            <p>A well-written job specification is the foundation for sound recruitment. It helps employers attract top talent, improve overall job satisfaction, and ensure the right person is hired for the right role.</p>
+            <h4>What Is A Job Specification?</h4>
+            <p>A job specification is a document that highlights the requirements, responsibilities, and qualifications for a specific job role. Think of it as a blueprint — outlining the skills, qualifications, and experience needed, along with the duties and responsibilities expected.</p>
+            <h4>Why Do We Need Job Specifications?</h4>
+            <ul>
+              <li><strong>Attracting the right candidates:</strong> A clear specification helps job seekers self-select, reducing irrelevant applications.</li>
+              <li><strong>Evaluating candidates:</strong> Specifications offer a basis for assessing whether candidates meet requirements.</li>
+              <li><strong>Onboarding new employees:</strong> They help new hires understand expectations and responsibilities from day one.</li>
+              <li><strong>Setting performance goals:</strong> Clear specifications outline expected outcomes and evaluation criteria.</li>
+              <li><strong>Identifying training needs:</strong> They highlight skills gaps and development areas.</li>
+            </ul>
+            <h4>How to Write One</h4>
+            <p>Include job details (title, location, type), a job summary, key responsibilities, skills and qualifications, education requirements, work experience, working conditions, and any additional information like performance measurements. A well-written specification should be accurate, specific, clear, concise, free from bias, and up-to-date.</p>
+          </div>
+        </div>
+
+        <div class="work-item" onclick="togglePanel('travel-2', this)">
+          <span class="work-num">02</span>
+          <div class="work-content">
+            <div class="work-tags">
+              <span class="work-tag tag-hr">Human Resources</span>
+              <span class="work-tag tag-b2b">B2B</span>
+              <span class="work-tag tag-blog">Workplace</span>
+            </div>
+            <div class="work-title">Can My Employee See My Wage Stream?</div>
+            <div class="work-desc">A comprehensive look at wage transparency — what employers and employees should know about salary disclosure, legal rights, and open-pay policies.</div>
+          </div>
+          <span class="work-arrow">↘</span>
+        </div>
+        <div class="sample-panel" id="travel-2">
+          <div class="panel-header">
+            <div>
+              <div class="work-tags" style="margin-bottom:10px;"><span class="work-tag tag-hr">Human Resources</span><span class="work-tag tag-b2b">B2B</span></div>
+              <div class="panel-title">Can My Employee See My Wage Stream? (Here's What You Should Know)</div>
+              <div class="panel-meta">HR & workplace article · 2024</div>
+            </div>
+            <button class="panel-close" onclick="togglePanel('travel-2')">✕</button>
+          </div>
+          <div class="panel-body">
+            <p>The issue of wage transparency depends on company policies, local laws, and cultural norms. In most cases, employees cannot directly access wage information without proper authorization. However, some organisations now embrace more open-pay policies to promote fairness and reduce pay gaps.</p>
+            <h4>What is Wage Transparency?</h4>
+            <p>Wage transparency refers to open communication about salaries and pay within an organisation. The degree of transparency varies: some companies share salary ranges for different positions, while others only disclose individual salaries. Financial privacy remains a fundamental right — laws like the Fair Credit Reporting Act regulate access to financial information in the United States.</p>
+            <h4>What Should Employers Consider?</h4>
+            <p><strong>Employee morale:</strong> Open-pay policies can increase trust and motivation. When employees understand how their salaries compare, they may feel more valued. However, some may feel underpaid when learning about colleagues' earnings.</p>
+            <p><strong>Legal considerations:</strong> In the US, the National Labour Relations Act protects employees' rights to discuss wages. Some states like Colorado, California, and New York have strict pay transparency laws. Employers must stay informed about local requirements.</p>
+            <p><strong>Company size and culture:</strong> Smaller businesses may find open-pay systems easier to implement. Industries like technology and finance have embraced wage transparency more than others due to competitive pressures.</p>
+            <p>The bottom line: wage transparency is not a simple yes-or-no decision. Employers must carefully weigh the benefits against the challenges, ensure legal compliance, and consider their workforce's preferences before making changes.</p>
+          </div>
+        </div>
+
+      </div><!-- end work-list travel -->
+    </div><!-- end panel-travel -->
+
+  </div><!-- end work-section -->
+</div><!-- end #work -->
+
+<!-- ─── ABOUT ─── -->
+<section class="about-section" id="about">
+  <div class="about-left reveal">
+    
+    <h2>I write content<br/>that <em>earns its place</em><br/>on the page.</h2>
+  </div>
+  <div class="about-right-col">
+    <div class="about-bio reveal reveal-delay-1">
+      <p>I'm a <span class="highlight">B2B/B2C content strategist, writer, and marketer</span> working remotely with clients across healthcare, fashion, technology, SaaS, and education. My academic background is in philosophy and research — which means I'm trained to find the sharpest argument and communicate it with precision.</p>
+      <p>I've spent the last two years building my skills in a commercial context: writing emails that get opened, ad messages that convert, and copy that takes brands and businesses from <span class="highlight">invisible to unforgettable.</span></p>
+      <p>I combine strategic thinking with strong research skills to create messages that speak directly to target audiences and work for your business 24/7 — bringing in results, leads, and customers while you sleep.</p>
+      <p style="color:var(--accent);font-weight:500;">Ready to go from invisible to unforgettable? Get in touch today.</p>
+    </div>
+
+    <div class="skills-block reveal reveal-delay-1">
+      <h3>Skills</h3>
+      <div class="skills-grid">
+        <div class="skill-item"><span class="skill-dot"></span><span>Ideation and Content Planning</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span>Email Newsletter Development</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span>Content Strategy</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span>Website Copy & Video Scriptwriting</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span>Social Media Content Management</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span>Research, Critical Thinking & Analysis</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span>SEO Content Writing</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span>Brand Voice Development & Consistency</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span>Project Management & Deadline Execution</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span>Attention to Detail & Adaptability</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span>Effective Communication</span></div>
+        <div class="skill-item"><span class="skill-dot"></span><span>Proactive Learner & Receptive to Feedback</span></div>
+      </div>
+    </div>
+
+    <div class="competencies-block reveal reveal-delay-2">
+      <h3>Tools & Competencies</h3>
+      <div class="comp-tags">
+        <span class="comp-tag">Notion</span>
+        <span class="comp-tag">Trello</span>
+        <span class="comp-tag">Google Workspace</span>
+        <span class="comp-tag">Microsoft Office Suite</span>
+        <span class="comp-tag">Ahrefs</span>
+        <span class="comp-tag">SEMrush</span>
+        <span class="comp-tag">Grammarly</span>
+        <span class="comp-tag">Canva</span>
+        <span class="comp-tag">AI-Skilled</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact-section reveal" id="contact">
+  <h2>Ready to work<br/><em>together?</em></h2>
+  <p>I'm open to full-time roles and select collaborative projects. Let's build something that works.</p>
+  <div class="contact-links">
+    <a href="mailto:omololasadik@gmail.com">✉ Email Me</a>
+    <a href="https://linkedin.com/in/omolola-sadik-08b2b4237" target="_blank" rel="noopener">in LinkedIn</a>
+    <a href="https://twitter.com/Sheis_Sadik" target="_blank" rel="noopener">𝕏 Twitter</a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>© 2026 Omolola Sadik. All rights reserved.</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+     ═══════════════════════════════════════════════ -->
+<script>
+// ── NAV SCROLL SHRINK ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── MOBILE NAV TOGGLE ──
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+// Close nav on link click (mobile)
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ── CATEGORY TAB SWITCHING ──
+function switchTab(category) {
+  // Deactivate all tabs and panels
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.category-panel').forEach(panel => panel.classList.remove('active'));
+  // Close any open sample panels
+  document.querySelectorAll('.sample-panel').forEach(p => p.classList.remove('open'));
+
+  // Activate selected
+  document.querySelector(`[onclick="switchTab('${category}')"]`).classList.add('active');
+  document.getElementById(`panel-${category}`).classList.add('active');
+}
+
+// ── SAMPLE PANEL TOGGLE ──
+function togglePanel(id, clickedItem) {
+  const panel = document.getElementById(id);
+  const isOpen = panel.classList.contains('open');
+
+  // Close all panels first
+  document.querySelectorAll('.sample-panel').forEach(p => p.classList.remove('open'));
+
+  if (!isOpen && clickedItem) {
+    panel.classList.add('open');
+    // Smooth scroll the panel into view
+    setTimeout(() => {
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 50);
+  }
+}
+</script>
+
+</body>
+</html>
